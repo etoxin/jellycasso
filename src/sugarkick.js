@@ -2,8 +2,8 @@
 
 // Sugarkick
 var sugarkick = sugarkick || {};
-    sugarkick.partials = {};
-    sugarkick.routes = {};
+    sugarkick.partials = sugarkick.partials || {};
+    sugarkick.routes = sugarkick.routes || {};
 
 // router
 sugarkick.route = function (location, template, controller) {
