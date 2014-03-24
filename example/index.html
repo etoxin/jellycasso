@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>Routes Example</title>
+        <script src="../src/sugarkick.js"></script>
+        <script>
+
+            sugarkick.template('homeTemplate', '<div>testing {{boom}}</div>');
+
+            sugarkick.route('home', 'homeTemplate', function () {
+                console.log('this is all I do.');
+            });
+
+            console.log(sugarkick);
+        </script>
+    </head>
+    <body>
+        <h1>Routes Example</h1>
+
+        <div id="sugar-view"></div>
+
+    </body>
+</html>
