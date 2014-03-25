@@ -37,6 +37,7 @@ sugarkick.router = function () {
         console.log('we have a matching route');
         //TODO: render a template
 
+        //TODO: handle templates better.
         sugarkick.config.appView.innerHTML = sugarkick.partials[hashbang+'Template'];
         sugarkick.routes[hashbang].controller();
     } else {
