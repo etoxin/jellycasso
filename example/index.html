@@ -2,23 +2,24 @@
     <head>
         <title>Routes Example</title>
         <script src="../src/sugarkick.js"></script>
-        <script>
 
-            sugarkick.module('sugar-app')
+
+        <script>
+            sugarkick.module('sugar-view')
                 .when('/home', {
                     controller: 'homeCtrl',
-                    template: '<div>testing <a href="#!/newpage">Home</a></div>'
+                    template: '<div>New Page <a href="#!/newpage">Home</a></div>'
                 })
                 .when('/newpage', {
                     controller: 'newPageCtrl',
-                    template: '<div>testing <a href="#!/home">New Page</a></div>'
+                    template: '<div>Home Page <a href="#!/home">New Page</a></div>'
                 });
-
-
         </script>
+
+
     </head>
     <body>
-        <h1>Routes Example</h1>
+        <h1>Sugarkick Example</h1>
 
         <div id="sugar-view"></div>
 
