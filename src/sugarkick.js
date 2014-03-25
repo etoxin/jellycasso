@@ -4,6 +4,7 @@
 var sugarkick = sugarkick || {};
     sugarkick.$$config = sugarkick.$$config || {};
     sugarkick.$views = sugarkick.$views || {};
+    sugarkick.$controllers = sugarkick.$controllers || {};
     sugarkick.routes = sugarkick.routes || {};
 
 // load
@@ -27,7 +28,7 @@ sugarkick.router = function () {
         //TODO: handle templates better.
         document.getElementById('sugar-view').innerHTML = sugarkick.$views[hashbang].template;
 
-        //TODO: add controller
+        sugarkick.$controllers[sugarkick.$views[hashbang].controller]();
     } else {
         console.log('Hashbang does not match route');
     }
@@ -43,6 +44,10 @@ sugarkick.when = function (route, viewObject) {
     }
 
     return sugarkick.$$config[this.$$appView]
+}
+
+sugarkick.controller = function (controllerName, controllerFunction) {
+    sugarkick.$controllers[controllerName] = controllerFunction;
 }
 
 sugarkick.module = function (appView) {
