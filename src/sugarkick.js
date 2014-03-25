@@ -14,9 +14,9 @@ sugarkick.load = function () {
 };
 
 // router
-sugarkick.route = function (location, template, controller) {
+sugarkick.route = function (location, controller) {
     sugarkick.routes[location] = {
-        template: template,
+        template: location,
         controller: controller
     }
 }
@@ -38,7 +38,7 @@ sugarkick.router = function () {
         //TODO: render a template
 
         //TODO: handle templates better.
-        sugarkick.config.appView.innerHTML = sugarkick.partials[hashbang+'Template'];
+        sugarkick.config.appView.innerHTML = sugarkick.partials[hashbang];
         sugarkick.routes[hashbang].controller();
     } else {
         console.log('Hashbang does not match route');

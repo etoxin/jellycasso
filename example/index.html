@@ -4,9 +4,11 @@
         <script src="../src/sugarkick.js"></script>
         <script>
 
-            sugarkick.template('homeTemplate', '<div>testing {{boom}}</div>');
+            sugarkick.template('home', '<div>testing <a href="#!newpage">Home</a></div>');
+            sugarkick.template('newpage', '<div>testing <a href="#!home">New Page</a></div>');
 
-            sugarkick.route('home', 'homeTemplate', function () {
+            sugarkick.route('newpage', function () {});
+            sugarkick.route('home', function () {
                 console.log('this is all I do.');
             });
 
