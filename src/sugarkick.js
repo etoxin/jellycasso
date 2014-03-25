@@ -3,6 +3,7 @@
 // Sugarkick
 var sugarkick = sugarkick || {};
     sugarkick.partials = sugarkick.partials || {};
+    sugarkick.$views = sugarkick.$views || {};
     sugarkick.routes = sugarkick.routes || {};
     sugarkick.config = sugarkick.config || {};
 
@@ -14,35 +15,20 @@ sugarkick.load = function () {
     return sugarkick;
 };
 
-// router
-sugarkick.route = function (location, controller) {
-    sugarkick.routes[location] = {
-        template: location,
-        controller: controller
-    }
-    return sugarkick;
-}
-
-// add templates
-sugarkick.template = function (name, template) {
-    // TODO: need to map this to the routes
-    sugarkick.partials[name] = template;
-    return sugarkick;
-};
-
 sugarkick.router = function () {
 
-    //TODO: get the hashbang, strip the bang
-    var hashbang = window.location.hash.replace('#!','');
+    //TODO: get the hashbang, strip the bang and forward slashes
+    var hashbang = window.location.hash.replace('#!','').replace(/\//g,'_');
 
     //TODO: match the hash with a route
-    if(hashbang && sugarkick.routes[hashbang]){
+    if(hashbang && sugarkick.$views[hashbang]){
         console.log('we have a matching route');
         //TODO: render a template
 
         //TODO: handle templates better.
-        sugarkick.config.appView.innerHTML = sugarkick.partials[hashbang];
-        sugarkick.routes[hashbang].controller();
+        document.getElementById('sugar-view').innerHTML = sugarkick.$views[hashbang].template;
+
+        //TODO: add controller
     } else {
         console.log('Hashbang does not match route');
     }
@@ -51,6 +37,11 @@ sugarkick.router = function () {
 
 
 sugarkick.when = function (route, viewObject) {
+    sugarkick.$views[route.replace(/\//g,'_')] = {
+        route: route,
+        controller: viewObject.controller,
+        template: viewObject.template
+    }
 
     return sugarkick.config[this.$$appView]
 }

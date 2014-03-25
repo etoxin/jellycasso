@@ -4,25 +4,17 @@
         <script src="../src/sugarkick.js"></script>
         <script>
 
-            sugarkick.route('home', function () {
-                            console.log('this is all I do.');
-                        }).template('home', '<div>testing <a href="#!newpage">Home</a></div>')
-
-            sugarkick.route('newpage', function () {})
-                     .template('newpage', '<div>testing <a href="#!home">New Page</a></div>');
-
-
             sugarkick.module('sugar-app')
                 .when('/home', {
                     controller: 'homeCtrl',
-                    template: '<div>testing <a href="#!newpage">Home</a></div>'
+                    template: '<div>testing <a href="#!/newpage">Home</a></div>'
                 })
                 .when('/newpage', {
-                    controller: 'homeCtrl',
-                    template: '<div>testing <a href="#!home">New Page</a></div>'
+                    controller: 'newPageCtrl',
+                    template: '<div>testing <a href="#!/home">New Page</a></div>'
                 });
 
-            console.log(sugarkick);
+
         </script>
     </head>
     <body>
