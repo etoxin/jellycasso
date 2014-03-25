@@ -4,13 +4,15 @@
         <script src="../src/sugarkick.js"></script>
         <script>
 
-            sugarkick.template('home', '<div>testing <a href="#!newpage">Home</a></div>');
-            sugarkick.template('newpage', '<div>testing <a href="#!home">New Page</a></div>');
-
-            sugarkick.route('newpage', function () {});
             sugarkick.route('home', function () {
-                console.log('this is all I do.');
-            });
+                            console.log('this is all I do.');
+                        }).template('home', '<div>testing <a href="#!newpage">Home</a></div>')
+
+            sugarkick.route('newpage', function () {})
+                     .template('newpage', '<div>testing <a href="#!home">New Page</a></div>');
+
+
+
 
             console.log(sugarkick);
         </script>

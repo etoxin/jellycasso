@@ -11,6 +11,7 @@ sugarkick.load = function () {
     sugarkick.config.appView = document.getElementById('sugar-view');
     sugarkick.router();
     window.addEventListener('hashchange', sugarkick.router);
+    return sugarkick;
 };
 
 // router
@@ -19,12 +20,14 @@ sugarkick.route = function (location, controller) {
         template: location,
         controller: controller
     }
+    return sugarkick;
 }
 
 // add templates
 sugarkick.template = function (name, template) {
     // TODO: need to map this to the routes
     sugarkick.partials[name] = template;
+    return sugarkick;
 };
 
 sugarkick.router = function () {
@@ -43,6 +46,7 @@ sugarkick.router = function () {
     } else {
         console.log('Hashbang does not match route');
     }
+    return sugarkick;
 }
 
 window.addEventListener('load', sugarkick.load);
