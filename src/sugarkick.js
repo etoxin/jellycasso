@@ -16,9 +16,10 @@ sugarkick.load = function () {
     return sugarkick;
 };
 
+// router
 sugarkick.router = function () {
 
-    //TODO: get the hashbang, strip the bang and forward slashes
+    // get the hashbang, strip the bang and forward slashes
     var hashbang = window.location.hash.replace('#!','').replace(/\//g,'_');
 
     //TODO: match the hash with a route
