@@ -49,4 +49,23 @@ sugarkick.router = function () {
     return sugarkick;
 }
 
+
+sugarkick.when = function (route, viewObject) {
+
+    return sugarkick.config[this.$$appView]
+}
+
+sugarkick.module = function (appView) {
+    sugarkick.config[appView] = {
+        template: false,
+        when: sugarkick.when,
+        $$appView: appView
+    }
+
+    return sugarkick.config[appView];
+}
+
+
+
+
 window.addEventListener('load', sugarkick.load);
