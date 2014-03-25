@@ -37,9 +37,11 @@ sugarkick.router = function () {
         console.log('we have a matching route');
         //TODO: render a template
 
-        sugarkick.config.appView.innerHTML = sugarkick.partials[hashbang+'Template']
+        sugarkick.config.appView.innerHTML = sugarkick.partials[hashbang+'Template'];
+        sugarkick.routes[hashbang].controller();
     } else {
         console.log('Hashbang does not match route');
     }
 }
+
 window.addEventListener('load', sugarkick.load);
