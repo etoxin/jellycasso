@@ -4,11 +4,12 @@ sugarkick
 A super small javascript MVC.
 
 # status
-Status: Alpha
+Status: Early Alpha
 
 ========
 TODO
 
 
-Router
+- two way data binding.
+
 

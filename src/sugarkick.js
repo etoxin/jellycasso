@@ -18,7 +18,6 @@ sugarkick.load = function () {
 
 // router function
 sugarkick.router = function () {
-
     // get the hashbang, strip the bang and forward slashes
     var hashbang = window.location.hash.replace('#!','').replace(/\//g,'_');
 
@@ -36,6 +35,7 @@ sugarkick.router = function () {
     } else {
         console.log('Hashbang does not match route');
     }
+
     return sugarkick;
 }
 
@@ -50,7 +50,7 @@ sugarkick.when = function (route, viewObject) {
     return sugarkick.$$config[this.$$appView]
 }
 
-// .controller function 
+// .controller function
 sugarkick.controller = function (controllerName, controllerFunction) {
     sugarkick.$controllers[controllerName] = controllerFunction;
 }
