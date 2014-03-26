@@ -8,7 +8,7 @@
 
 
         <script>
-            sugarkick.module('sugar-view')
+            sugarkick.module()
                 .when('/home', {
                     controller: 'home',
                     template: '/example/partials/home.html'
@@ -24,9 +24,7 @@
 
             sugarkick.controller('newpage', function() {
                 // do stuff
-                window.setTimeout(function(){
-                    document.getElementsByClassName('output')[0].innerHTML = '<div class="alert alert-success">This page loaded.</div>';
-                }, 1000);
+                document.getElementsByClassName('output')[0].innerHTML = '<div class="alert alert-success">This page loaded.</div>';
             });
         </script>
 
