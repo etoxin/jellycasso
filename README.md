@@ -1,8 +1,10 @@
 sugarkick
 ==========
 
-Simple and handy javascript framework
+A super small javascript MVC.
 
+# status
+Status: Alpha
 
 ========
 TODO

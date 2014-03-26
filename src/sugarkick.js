@@ -7,16 +7,16 @@ var sugarkick = sugarkick || {};
     sugarkick.$controllers = sugarkick.$controllers || {};
     sugarkick.routes = sugarkick.routes || {};
 
-// load
+// load function
 sugarkick.load = function () {
-    // TODO: handle models.
     sugarkick.$$config.appView = document.getElementById('sugar-view');
     sugarkick.router();
     window.addEventListener('hashchange', sugarkick.router);
+
     return sugarkick;
 };
 
-// router
+// router function
 sugarkick.router = function () {
 
     // get the hashbang, strip the bang and forward slashes
@@ -27,8 +27,11 @@ sugarkick.router = function () {
         console.log(sugarkick.$views[hashbang]);
 
         //TODO: handle templates better.
+
+        // the view container.
         document.getElementById('sugar-view').innerHTML = sugarkick.$views[hashbang].template;
 
+        // fire the controller
         sugarkick.$controllers[sugarkick.$views[hashbang].controller]();
     } else {
         console.log('Hashbang does not match route');
@@ -36,7 +39,7 @@ sugarkick.router = function () {
     return sugarkick;
 }
 
-
+// .when function chains from sugarkick
 sugarkick.when = function (route, viewObject) {
     sugarkick.$views[route.replace(/\//g,'_')] = {
         route: route,
@@ -47,6 +50,7 @@ sugarkick.when = function (route, viewObject) {
     return sugarkick.$$config[this.$$appView]
 }
 
+// .controller function 
 sugarkick.controller = function (controllerName, controllerFunction) {
     sugarkick.$controllers[controllerName] = controllerFunction;
 }
