@@ -11,14 +11,13 @@ var request;
 // load function
 sugarkick.load = function () {
     sugarkick.$$config.appView = document.getElementById('sugar-view');
-    sugarkick.router();
     window.addEventListener('hashchange', sugarkick.router);
 
     return sugarkick;
 };
 
 // Partial loader
-sugarkick.$$config.load = function (url) {
+sugarkick.$$config.load = function (url, view) {
     var templateToReturn = 'no template.';
     request = new XMLHttpRequest();
     request.open('GET', url, true);
@@ -26,7 +25,8 @@ sugarkick.$$config.load = function (url) {
     request.onload = function() {
         if (this.status >= 200 && this.status < 400){
             // Success!
-            templateToReturn = this.response;
+            sugarkick.$views[view].template = this.response;
+            sugarkick.router();
         } else {
             // We reached our target server, but it returned an error
             console.error('Partial Load Error.');
@@ -70,10 +70,10 @@ sugarkick.when = function (route, viewObject) {
     sugarkick.$views[route.replace(/\//g,'_')] = {
         route: route,
         controller: viewObject.controller,
-        template: sugarkick.$$config.load(viewObject.template)
+        template: 'loading...'
     }
 
-
+    sugarkick.$$config.load(viewObject.template, route.replace(/\//g,'_'))
 
     return sugarkick.$$config[this.$$appView]
 }
