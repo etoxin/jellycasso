@@ -25,7 +25,7 @@ sugarkick.$$config.load = function (url, view) {
     request.onload = function() {
         if (this.status >= 200 && this.status < 400){
             // Success!
-            sugarkick.$views[view].template = this.response;
+            sugarkick.$views[view].template = this.responseText;
             sugarkick.router();
         } else {
             // We reached our target server, but it returned an error
@@ -47,11 +47,8 @@ sugarkick.router = function () {
     // get the hashbang, strip the bang and forward slashes
     var hashbang = window.location.hash.replace('#!','').replace(/\//g,'_');
 
-    //TODO: match the hash with a route
+    // match the route with hash.
     if(hashbang && sugarkick.$views[hashbang]){
-        console.log(sugarkick.$views[hashbang]);
-
-        //TODO: handle templates better.
 
         // the view container.
         document.getElementById('sugar-view').innerHTML = sugarkick.$views[hashbang].template;
