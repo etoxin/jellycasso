@@ -10,22 +10,23 @@
         <script>
             sugarkick.module('sugar-view')
                 .when('/home', {
-                    controller: 'homeCtrl',
+                    controller: 'home',
                     template: '/example/partials/home.html'
                 })
                 .when('/newpage', {
-                    controller: 'newPageCtrl',
+                    controller: 'newpage',
                     template: '/example/partials/newpage.html'
                 });
 
-            sugarkick.controller('homeCtrl', function() {
-                // do stuff
-                console.log('Homepage Controller Stuff');
+            sugarkick.controller('home', function() {
+                // stuff here
             });
 
-            sugarkick.controller('newPageCtrl', function() {
+            sugarkick.controller('newpage', function() {
                 // do stuff
-                console.log('newPageCtrl Controller Stuff');
+                window.setTimeout(function(){
+                    document.getElementsByClassName('output')[0].innerHTML = '<div class="alert alert-success">This page loaded.</div>';
+                }, 1000);
             });
         </script>
 
