@@ -11,11 +11,11 @@
             sugarkick.module('sugar-view')
                 .when('/home', {
                     controller: 'homeCtrl',
-                    template: '<div>New Page <a href="#!/newpage">Home</a></div>'
+                    template: '/example/partials/home.html'
                 })
                 .when('/newpage', {
                     controller: 'newPageCtrl',
-                    template: '<div>Home Page <a href="#!/home">New Page</a></div>'
+                    template: '/example/partials/newpage.html'
                 });
 
             sugarkick.controller('homeCtrl', function() {

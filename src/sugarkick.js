@@ -6,6 +6,7 @@ var sugarkick = sugarkick || {};
     sugarkick.$views = sugarkick.$views || {};
     sugarkick.$controllers = sugarkick.$controllers || {};
     sugarkick.routes = sugarkick.routes || {};
+var request;
 
 // load function
 sugarkick.load = function () {
@@ -15,6 +16,31 @@ sugarkick.load = function () {
 
     return sugarkick;
 };
+
+// Partial loader
+sugarkick.$$config.load = function (url) {
+    var templateToReturn = 'no template.';
+    request = new XMLHttpRequest();
+    request.open('GET', url, true);
+
+    request.onload = function() {
+        if (this.status >= 200 && this.status < 400){
+            // Success!
+            templateToReturn = this.response;
+        } else {
+            // We reached our target server, but it returned an error
+            console.error('Partial Load Error.');
+        }
+    };
+
+    request.onerror = function() {
+        // There was a connection error of some sort
+        console.error('request error.');
+    };
+
+    request.send();
+    return request.responseText;
+}
 
 // router function
 sugarkick.router = function () {
@@ -44,8 +70,10 @@ sugarkick.when = function (route, viewObject) {
     sugarkick.$views[route.replace(/\//g,'_')] = {
         route: route,
         controller: viewObject.controller,
-        template: viewObject.template
+        template: sugarkick.$$config.load(viewObject.template)
     }
+
+
 
     return sugarkick.$$config[this.$$appView]
 }
