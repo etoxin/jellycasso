@@ -2,10 +2,10 @@
 
 // Sugarkick
 var sugarkick = sugarkick || {};
-    sugarkick.$$config = sugarkick.$$config || {};
-    sugarkick.$views = sugarkick.$views || {};
-    sugarkick.$controllers = sugarkick.$controllers || {};
-    sugarkick.routes = sugarkick.routes || {};
+    sugarkick.$$config = {};
+    sugarkick.$views = {};
+    sugarkick.$controllers = {};
+    sugarkick.routes = {};
 var request;
 
 // load function
@@ -28,7 +28,6 @@ sugarkick.$$config.load = function (url, view) {
             sugarkick.$views[view].template = this.responseText;
             sugarkick.router();
         } else {
-            // We reached our target server, but it returned an error
             console.error('Partial Load Error.');
         }
     };
@@ -51,7 +50,8 @@ sugarkick.router = function () {
     if(hashbang && sugarkick.$views[hashbang]){
 
         // the view container.
-        document.getElementById('sugar-view').innerHTML = sugarkick.$views[hashbang].template;
+        console.log(sugarkick);
+        sugarkick.$$config.appView.innerHTML = sugarkick.$views[hashbang].template;
 
         // fire the controller
         sugarkick.$controllers[sugarkick.$views[hashbang].controller]();
@@ -82,12 +82,14 @@ sugarkick.controller = function (controllerName, controllerFunction) {
 
 sugarkick.module = function (appView) {
     sugarkick.$$config[appView] = {
-        template: false,
         when: sugarkick.when,
         $$appView: appView
     }
 
+    sugarkick.$$config.appView = document.getElementById(appView);
+
+    console.log(sugarkick.$$config.appView);
+
+    window.addEventListener('hashchange', sugarkick.router);
     return sugarkick.$$config[appView];
 }
-
-window.addEventListener('load', sugarkick.load);

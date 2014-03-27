@@ -8,24 +8,26 @@
 
 
         <script>
-            sugarkick.module()
-                .when('/home', {
-                    controller: 'home',
-                    template: '/example/partials/home.html'
-                })
-                .when('/newpage', {
-                    controller: 'newpage',
-                    template: '/example/partials/newpage.html'
+            window.onload = function() {
+                sugarkick.module('sugar-view')
+                        .when('/home', {
+                            controller: 'home',
+                            template: '/example/partials/home.html'
+                        })
+                        .when('/newpage', {
+                            controller: 'newpage',
+                            template: '/example/partials/newpage.html'
+                        });
+
+                sugarkick.controller('home', function() {
+                    // stuff here
                 });
 
-            sugarkick.controller('home', function() {
-                // stuff here
-            });
-
-            sugarkick.controller('newpage', function() {
-                // do stuff
-                document.getElementsByClassName('output')[0].innerHTML = '<div class="alert alert-success">This page loaded.</div>';
-            });
+                sugarkick.controller('newpage', function() {
+                    // do stuff
+                    document.getElementsByClassName('output')[0].innerHTML = '<div class="alert alert-success">This page loaded.</div>';
+                });
+            }
         </script>
 
 
